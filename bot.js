@@ -1,7 +1,7 @@
 var config = require('./config');
 var utils = require('./utils');
 var Discordie = require('discordie');
-var client = new Discordie();
+var client = new Discordie({autoReconnect:true});
 var Events = Discordie.Events;
 var steem = require("steem");
 
