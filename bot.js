@@ -3,6 +3,7 @@ var utils = require('./utils');
 var Discordie = require('discordie');
 var client = new Discordie();
 var Events = Discordie.Events;
+var steem = require("steem");
 
 client.connect({
     token: config.discord.token
@@ -38,6 +39,12 @@ client.Dispatcher.on("MESSAGE_CREATE", function (e) {
     }
 );
 
+
+setInterval(function() {
+    steem.api.getFollowCount("wehmoen", function (err, result) {
+        console.log("Send ping!");
+    });
+},1000);
 
 
 
