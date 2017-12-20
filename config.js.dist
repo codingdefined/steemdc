@@ -1,0 +1,7 @@
+var config = {
+    discord: {
+        token: "YOUR_BOT_TOKEN"
+    }
+};
+
+module.exports = config;

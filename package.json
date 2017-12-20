@@ -1,0 +1,23 @@
+{
+  "name": "steemdc",
+  "version": "1.0.0",
+  "description": "Bring Steem profiles to discord",
+  "main": "bot.js",
+  "scripts": {
+    "test": "npm bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wehmoen/steemdc.git"
+  },
+  "author": "wehmoen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wehmoen/steemdc/issues"
+  },
+  "homepage": "https://github.com/wehmoen/steemdc#readme",
+  "dependencies": {
+    "steem": "^0.6.7",
+    "discordie": "^0.11.0"
+  }
+}
