@@ -35,6 +35,43 @@ client.Dispatcher.on("MESSAGE_CREATE", function (e) {
         if (content.startsWith("!help")) {
             e.message.channel.sendMessage("Hi! I'm SteemDC, a bot to display Steem profiles in Discord. Have a look at my github repo: https://github.com/wehmoen/steemdc");
         }
+        if (content.startsWith("!created")) {
+            const params = content.replace("!created ", "").split(' ');
+            const tag = params[0];
+            const limit = params.length > 1 ? parseInt(params[1]) : 1;
+            e.message.channel.sendTyping();
+            utils.getDiscussionByCreated(tag, limit).then(function(result) {
+                for (let i = 0; i < result.length; i++) {
+                    var link = utils.printLink(result[i]);
+                    e.message.channel.sendMessage(link);
+                }
+            }).catch(function(e) {console.log(e);})
+
+        }
+        if (content.startsWith("!hot")) {
+            const params = content.replace("!hot ", "").split(' ');
+            const tag = params[0];
+            const limit = params.length > 1 ? parseInt(params[1]) : 1;
+            e.message.channel.sendTyping();
+            utils.getDiscussionByHot(tag, limit).then(function(result) {
+                for (let i = 0; i < result.length; i++) {
+                    var link = utils.printLink(result[i]);
+                    e.message.channel.sendMessage(link);
+                }
+            }).catch(function(e) {console.log(e);})
+        }
+        if (content.startsWith("!trending")) {
+            const params = content.replace("!trending ", "").split(' ');
+            const tag = params[0];
+            const limit = params.length > 1 ? parseInt(params[1]) : 1;
+            e.message.channel.sendTyping();
+            utils.getDiscussionByTrending(tag, limit).then(function(result) {
+                for (let i = 0; i < result.length; i++) {
+                    var link = utils.printLink(result[i]);
+                    e.message.channel.sendMessage(link);
+                }
+            }).catch(function(e) {console.log(e);})
+        }
 
     }
 );
@@ -45,8 +82,3 @@ setInterval(function() {
         console.log("Send ping!");
     });
 },1000);
-
-
-
-
-
