@@ -1,4 +1,5 @@
 var steem = require("steem");
+var time_ago = require('time_ago_in_words');
 
 var utils = {
     getProfileData: function (username) {
@@ -16,6 +17,37 @@ var utils = {
                 yes(result);
             });
         })
+    },
+    getDiscussionByCreated: function(tag, limit) {
+        return new Promise(function (yes, no) {
+            steem.api.getDiscussionsByCreated({tag: tag, limit: limit}, function (err, result) {
+                if(err) no(err);
+                yes(result);
+            });
+        })
+    },
+    getDiscussionsByHot: function(tag, limit) {
+        return new Promise(function (yes, no) {
+            steem.api.getDiscussionsByHot({tag: tag, limit: limit}, function (err, result) {
+                if(err) no(err);
+                yes(result);
+            });
+        })
+    },
+    getDiscussionsByTrending: function(tag, limit) {
+        return new Promise(function (yes, no) {
+            steem.api.getDiscussionsByTrending({tag: tag, limit: limit}, function (err, result) {
+                if(err) no(err);
+                yes(result);
+            });
+        })
+    },
+    printLink: function(result) {
+            let value = "Pending Payout : " + result.pending_payout_value;
+            value += "\nTotal Votes : " + result.net_votes;
+            value += "\nPosted Time : " + time_ago(new Date(result.created) - (1000 * 60));
+            value += "\nhttps://steemit.com" + result.url;
+            return value;
     },
     getEmbedProfile:
         function (profile) {
